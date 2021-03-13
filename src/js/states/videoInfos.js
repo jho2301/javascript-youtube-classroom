@@ -24,7 +24,9 @@ const videoInfos = {
 
   async init() {
     const oldVideoInfos = getLocalStorage(VIDEO_INFOS) ?? [];
-    const latestVideoInfos = await updateVideoInfos(oldVideoInfos);
+    const latestVideoInfos = oldVideoInfos.length
+      ? await updateVideoInfos(oldVideoInfos)
+      : [];
 
     this.set(latestVideoInfos);
   },
